@@ -1,6 +1,32 @@
 <!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SUPER GRAMMAR BROS · Pixel Platformer</title><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@500;700;900&display=swap" rel="stylesheet"><style>
 :root{--ink:#111a39;--gold:#ffcf44;--sky:#79d5ff}*{box-sizing:border-box}body{margin:0;background:#11122b;color:white;font-family:Nunito,Arial,sans-serif;background-image:radial-gradient(circle at 50% 0,#29396d,#101126 72%)}.wrap{max-width:1140px;margin:auto;padding:18px}.pixel{font-family:'Press Start 2P',monospace;line-height:1.6}header{text-align:center;margin:8px 0 16px}h1{font-size:clamp(17px,3vw,30px);color:var(--gold);text-shadow:4px 4px #bc4b50;margin:0}header p{color:#cbd9ff;margin:6px 0;font-size:13px}.panel{background:#21264c;border:3px solid #6871b6;box-shadow:0 7px 0 #0b0e24;border-radius:13px;padding:15px;margin-bottom:14px}.settings{display:flex;flex-wrap:wrap;gap:12px;align-items:end;justify-content:center}label{font-size:12px;font-weight:900;color:#d7e5ff;display:block;margin-bottom:5px}select,button{font:inherit}select{width:min(100%,420px);background:#0e1430;color:white;border:2px solid #9ca9e5;border-radius:8px;padding:11px}.btn{background:var(--gold);color:#1e2343;border:0;border-bottom:5px solid #c98d28;border-radius:9px;font-weight:900;padding:10px 17px;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(3px);border-bottom-width:2px}.hud{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:900;margin-bottom:9px}.hud b{color:#ffe36b}.game{position:relative;overflow:hidden;border:5px solid #303c82;border-radius:13px;background:#79d5ff;box-shadow:0 9px 0 #0a1027}canvas{display:block;width:100%;aspect-ratio:960/500;image-rendering:pixelated;touch-action:none}.toast{position:absolute;top:12px;left:50%;transform:translateX(-50%);background:#151c43ee;border:2px solid #ffe16b;border-radius:9px;padding:10px 14px;font-weight:900;font-size:13px;max-width:90%;text-align:center;pointer-events:none;opacity:0;transition:opacity .2s}.toast.show{opacity:1}.controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px;flex-wrap:wrap}.keys{display:flex;gap:10px}.key{background:#343c72;border:2px solid #7985d0;border-bottom:5px solid #141a42;color:white;min-width:61px;height:53px;border-radius:10px;font-size:22px;font-weight:900;touch-action:none;user-select:none;cursor:pointer}.key:active{transform:translateY(3px)}.help{color:#d8e3ff;font-size:13px}.help strong{color:#ffe47d}.overlay{position:fixed;inset:0;background:#070b23ce;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}.overlay.open{display:flex}.modal{background:#f7f3dc;color:#20294d;border:6px solid #ffca43;box-shadow:0 12px 0 #10162e;border-radius:13px;width:min(680px,100%);padding:22px;text-align:center}.modal .pixel{font-size:12px;color:#a1445e}.modal h2{font-size:clamp(17px,3vw,24px);margin:17px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answer{padding:13px 10px;min-height:55px;background:#fff;border:2px solid #606b9c;border-bottom:5px solid #465080;border-radius:8px;color:#1e2853;font-weight:900;cursor:pointer}.answer:hover{background:#fff2b6}.answer:disabled{cursor:default}.answer.correct{background:#b9efba;border-color:#27934d}.answer.wrong{background:#ffc2bf;border-color:#d64b50}.message{min-height:27px;margin:12px 0 4px;font-weight:900}.small{font-size:12px;color:#56618a}.footer{text-align:center;color:#a5afd8;font-size:12px;padding:8px}.hint{font-size:12px;color:#bac6ff}@media(max-width:640px){.wrap{padding:9px}.panel{padding:11px}.answers{grid-template-columns:1fr}.modal{padding:13px}.modal h2{font-size:17px}.key{min-width:53px;height:48px}.help{font-size:11px}}
- .scorecard{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.scorecard>div{padding:12px 6px;background:#fff5c9;border:2px solid #dfb94c;border-radius:9px}.scorecard strong{display:block;font-size:19px;color:#27438b}.scorecard small{font-size:11px}.progressbar{height:13px;background:#101637;border-radius:10px;overflow:hidden;margin:9px 0}.progressbar span{display:block;height:100%;background:#ffd34c;width:0;transition:width .2s} </style>
+ .scorecard{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.scorecard>div{padding:12px 6px;background:#fff5c9;border:2px solid #dfb94c;border-radius:9px}.scorecard strong{display:block;font-size:19px;color:#27438b}.scorecard small{font-size:11px}.progressbar{height:13px;background:#101637;border-radius:10px;overflow:hidden;margin:9px 0}.progressbar span{display:block;height:100%;background:#ffd34c;width:0;transition:width .2s} /* Arcade high-score cabinet */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+#arc-results-box.ar-leaderboard{width:min(990px,97vw);max-height:94vh;overflow-y:auto;background:radial-gradient(ellipse at 50% -30%,#234758,#101a2c 70%);border:5px solid #567d85;border-radius:5px;box-shadow:inset 0 0 0 5px #0b1024,0 0 0 9px #23252c,0 22px 65px #000d;padding:26px 27px 23px;color:#fff;font-family:'Press Start 2P','Courier New',monospace}
+#arc-results-box.ar-leaderboard h2{font:16px/1.8 'Press Start 2P',monospace!important;color:#ffe16a!important;text-align:center;text-shadow:2px 3px #664b23;margin:0 0 12px}
+#arc-results-box.ar-leaderboard .ar-board-subtitle{font:9px/1.9 'Press Start 2P',monospace;color:#8dfcfa;text-align:center;margin:0 0 17px}
+#arc-results-box.ar-leaderboard .ar-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin:10px 0 15px}
+#arc-results-box.ar-leaderboard .ar-controls label{color:#ffdb69;font:9px 'Press Start 2P',monospace;margin:0}
+#arc-results-box.ar-leaderboard .ar-controls select{border:2px solid #536d90;border-radius:3px;background:#101c34;color:#fff;padding:8px;font:10px 'Courier New',monospace;max-width:200px;min-width:130px}
+#arc-results-box.ar-leaderboard .ar-board-wrap{overflow-x:auto;border-top:2px solid #637d83;border-bottom:2px solid #637d83;padding:7px 0}
+#arc-results-box.ar-leaderboard .ar-ranking{width:100%;border-collapse:collapse;table-layout:fixed;font:10px/1.8 'Press Start 2P',monospace;color:#dce8ef}
+#arc-results-box.ar-leaderboard .ar-ranking th{font:9px/1.7 'Press Start 2P',monospace;color:#ffe16a;text-align:left;border-bottom:1px solid #728b91;padding:9px 5px 11px}
+#arc-results-box.ar-leaderboard .ar-ranking td{padding:9px 5px;word-break:break-word;border-bottom:1px solid #354252}
+#arc-results-box.ar-leaderboard .ar-ranking tbody tr:nth-child(odd){background:#ffffff08}
+#arc-results-box.ar-leaderboard .ar-ranking .rank{color:#ffe16a}
+#arc-results-box.ar-leaderboard .ar-ranking .name{color:#ff676d}
+#arc-results-box.ar-leaderboard .ar-ranking .clazz{color:#6ee3ff}
+#arc-results-box.ar-leaderboard .ar-ranking .points{color:#f4f3ff}
+#arc-results-box.ar-leaderboard .ar-ranking .rate{color:#9bf878}
+#arc-results-box.ar-leaderboard .ar-ranking .mine{background:#797c263b!important;outline:1px solid #fddd64;outline-offset:-1px}
+#arc-results-box.ar-leaderboard .ar-ranking .mine .name:after{content:' ◀';color:#ffe16a}
+#arc-results-box.ar-leaderboard .ar-count{font:9px/1.9 'Press Start 2P',monospace;color:#c7dadc;margin:15px 0 8px}
+#arc-results-box.ar-leaderboard .ar-detail{background:#10182b;border:1px solid #53687e;margin:12px 0 6px;padding:13px 15px;font:10px/1.9 'Courier New',monospace;color:#d5e3e9}
+#arc-results-box.ar-leaderboard .ar-detail strong{color:#ffe16a}
+#arc-results-box.ar-leaderboard .ar-levels{color:#86dffa;overflow-wrap:anywhere}
+#arc-results-box.ar-leaderboard .ar-buttons button{font:10px/1.5 'Press Start 2P',monospace!important;border-radius:4px;padding:10px;min-width:145px}
+#arc-results-box.ar-leaderboard .ar-note{font:11px/1.6 Arial,sans-serif;color:#b9cad6}
+</style>
 <style id="multiTopicStyles">
 #multiTopicModal{position:fixed;inset:0;z-index:2147483000;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;padding:16px;font-family:Arial,Helvetica,sans-serif;color:#fff;box-sizing:border-box}
 #multiTopicModal.open{display:flex}
@@ -57,7 +83,7 @@
   function topicsNow(){if(typeof window.arcadeTopicsNow==='function')return window.arcadeTopicsNow();return 'MIXED GRAMMAR'}
   function keyFor(person,topics){return PREFIX+[GAME_ID,person.className.trim().toLocaleLowerCase(),person.name.trim().toLocaleLowerCase(),topics].join('::')}
   function getBest(person,topics){if(!person)return null;try{return JSON.parse(safeGet(keyFor(person,topics))||'null')}catch(e){return null}}
-  function openLogin(onDone){pendingStart=onDone;box.replaceChildren(el('h2','', 'PLAYER IDENTIFICATION'));
+  function openLogin(onDone){box.classList.remove('ar-leaderboard');pendingStart=onDone;box.replaceChildren(el('h2','', 'PLAYER IDENTIFICATION'));
     const hint=el('p','ar-note','Enter your class and name before playing. Your personal best is saved on this browser only.');box.append(hint);
     let f=el('form');let classLabel=el('label','','CLASS'),c=el('input'),nameLabel=el('label','','NAME'),n=el('input');
     c.required=true;n.required=true;c.maxLength=60;n.maxLength=80;c.placeholder='e.g. 2 ESO A';n.placeholder='e.g. Alex';
@@ -83,17 +109,88 @@
     const esc=x=>'"'+String(x==null?'':x).replace(/"/g,'""')+'"';const csv='\ufeff'+rows.map(r=>r.map(esc).join(',')).join('\r\n');
     const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=GAME_ID+'_results.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
   }
-  window.arcadeResults=function(){const topics=sessionActive?sessionTopics:topicsNow();const best=getBest(player,topics);box.replaceChildren(el('h2','','🏆 PLAYER RESULTS'));
-    if(!player){box.append(el('p','ar-note','No player identified yet. Enter CLASS and NAME to start tracking results.'));}
-    else{const info=el('div','ar-info');info.append(line('NAME',player.name),line('CLASS',player.className),line('SELECTED GRAMMAR TOPICS',topics));box.append(info);
-      if(best){box.append(el('p','ar-best','PERSONAL BEST · '+new Date(best.date).toLocaleDateString('en-GB')));box.append(line('SCORE',best.score),line('NUMBER OF CORRECT ANSWERS',best.correct+' / '+best.attempted));
-        box.append(el('p','ar-note','NUMBER OF CORRECT ANSWERS PER LEVEL'));
-        best.levels.forEach((r,i)=>box.append(line('LEVEL '+(i+1),r.correct+' / '+r.attempted)));
-      }else box.append(el('p','ar-note','No saved record for this selection yet. Complete questions to set your best score.'));
+  function allRecords(){
+    const result=[];
+    try {for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if(!k||!k.startsWith(PREFIX))continue;
+      try {const r=JSON.parse(localStorage.getItem(k));if(r&&r.game===GAME_ID&&r.name&&r.className&&Number.isFinite(Number(r.score)))result.push(r)}catch(e){}
+    }}catch(e){}
+    return result;
+  }
+  function rankingRecords(){
+    // A student may practise several topic combinations. Keep all per-topic records
+    // in storage while showing each student once, with their best score overall.
+    const topByStudent=new Map();
+    for(const r of allRecords()){
+      const id=r.className.trim().toLocaleLowerCase()+'::'+r.name.trim().toLocaleLowerCase();
+      const old=topByStudent.get(id);
+      if(!old||Number(r.score)>Number(old.score))topByStudent.set(id,r);
     }
-    box.append(el('p','ar-note','Records update only when a higher score is achieved. Data is stored on this device/browser, not shared between devices.'));
-    const actions=el('div','ar-buttons');let close=el('button','','CLOSE');close.onclick=hide;let change=el('button','ar-secondary','CHANGE PLAYER');change.onclick=()=>openLogin(null);
-    let exportBtn=el('button','ar-secondary','EXPORT CSV');exportBtn.onclick=exportCSV;actions.append(close,change,exportBtn);box.append(actions);show();};
+    return [...topByStudent.values()].sort((a,b)=>Number(b.score)-Number(a.score)||Number(b.correct)-Number(a.correct)||a.name.localeCompare(b.name));
+  }
+  function rankLabel(i){return (i+1)+(i===0?'st':i===1?'nd':i===2?'rd':'th')}
+  function cell(row,text,cls){const c=el('td',cls,String(text));row.append(c)}
+  window.arcadeResults=function(){
+    box.classList.add('ar-leaderboard');
+    const list=rankingRecords();let full=false;
+    let selectedClass='ALL CLASSES';
+    box.replaceChildren(el('h2','','★ SCORE RANKING ★'),el('div','ar-board-subtitle','SUPER GRAMMAR BROS  •  HALL OF FAME'));
+    const controls=el('div','ar-controls');
+    const filterLabel=el('label','','CLASS  ');
+    const classSelect=el('select');classSelect.setAttribute('aria-label','Filter ranking by class');
+    const classes=[...new Set(list.map(r=>r.className))].sort((a,b)=>a.localeCompare(b));
+    for(const name of ['ALL CLASSES',...classes]){const opt=el('option','',name);opt.value=name;classSelect.append(opt)}
+    filterLabel.append(classSelect);
+    const toggle=el('button','ar-secondary','ALL PLAYERS');toggle.type='button';
+    controls.append(filterLabel,toggle);box.append(controls);
+    const frame=el('div','ar-board-wrap');const table=el('table','ar-ranking');
+    const thead=el('thead'),hr=el('tr');
+    for(const [title,width] of [['RANK','10%'],['NAME','22%'],['CLASS','18%'],['SCORE','19%'],['STAGE','13%'],['RIGHT %','18%']]){let h=el('th','',title);h.style.width=width;hr.append(h)}
+    thead.append(hr);table.append(thead);const tbody=el('tbody');table.append(tbody);frame.append(table);box.append(frame);
+    const counter=el('div','ar-count');box.append(counter);
+    const detail=el('div','ar-detail');box.append(detail);
+    function drawRanking(){
+      const filtered=list.filter(r=>selectedClass==='ALL CLASSES'||r.className===selectedClass);
+      const visible=full?filtered:filtered.slice(0,10);tbody.replaceChildren();
+      const currentId=player?player.className.trim().toLocaleLowerCase()+'::'+player.name.trim().toLocaleLowerCase():'';
+      visible.forEach((r,i)=>{
+        const tr=el('tr');const who=r.className.trim().toLocaleLowerCase()+'::'+r.name.trim().toLocaleLowerCase();
+        if(who===currentId)tr.classList.add('mine');
+        const completed=Array.isArray(r.levels)?r.levels.filter(v=>v&&Number(v.attempted)>0).length:0;
+        const rate=Number(r.attempted)>0?Math.round(Number(r.correct)/Number(r.attempted)*100):0;
+        cell(tr,rankLabel(i),'rank');cell(tr,r.name.toUpperCase(),'name');cell(tr,r.className.toUpperCase(),'clazz');
+        cell(tr,Number(r.score).toLocaleString('en-GB'),'points');cell(tr,completed||'—','stage');cell(tr,rate+'%','rate');
+        tr.tabIndex=0;tr.title='Show player best details';
+        tr.addEventListener('click',()=>showDetail(r));tr.addEventListener('keydown',e=>{if(e.key==='Enter')showDetail(r)});
+        tbody.append(tr);
+      });
+      if(!visible.length){const tr=el('tr'),td=el('td','','NO RECORDS YET');td.colSpan=6;td.style.textAlign='center';tr.append(td);tbody.append(tr)}
+      counter.textContent=`${filtered.length} PLAYERS SAVED  •  SHOWING ${visible.length}  •  RECORDS KEPT ON THIS BROWSER`;
+      toggle.textContent=full?'TOP 10':'ALL PLAYERS';
+      let mine=filtered.find(r=>r.className.trim().toLocaleLowerCase()+'::'+r.name.trim().toLocaleLowerCase()===currentId);
+      if(mine)showDetail(mine);
+      else if(filtered.length)showDetail(filtered[0]);
+      else detail.textContent='Play a round to earn a place on the leaderboard.';
+    }
+    function showDetail(r){
+      detail.replaceChildren();
+      const rate=Number(r.attempted)>0?Math.round(Number(r.correct)/Number(r.attempted)*100):0;
+      const a=el('div');a.append(el('strong','','SELECTED GRAMMAR TOPICS: '),document.createTextNode(r.topics||'MIXED GRAMMAR'));
+      const b=el('div');b.append(el('strong','','BEST SCORE: '),document.createTextNode(Number(r.score).toLocaleString('en-GB')),
+        document.createTextNode('   •   CORRECT: '+(r.correct||0)+' / '+(r.attempted||0)+' ('+rate+'%)'));
+      const c=el('div','ar-levels','CORRECT ANSWERS PER LEVEL: '+((r.levels||[]).map((v,i)=>'L'+(i+1)+' '+(Number(v.correct)||0)+'/'+(Number(v.attempted)||0)).join('  |  ')||'—'));
+      detail.append(el('div','','PLAYER: '+r.name+'  •  CLASS: '+r.className),a,b,c);
+    }
+    classSelect.onchange=()=>{selectedClass=classSelect.value;drawRanking()};
+    toggle.onclick=()=>{full=!full;drawRanking()};
+    drawRanking();
+    box.append(el('p','ar-note','One best score per student in the ranking. All topic-specific personal bests remain saved; lower scores never overwrite higher scores. Results are stored only on this browser/device.'));
+    const actions=el('div','ar-buttons');let close=el('button','','CLOSE');close.onclick=hide;
+    let change=el('button','ar-secondary','CHANGE PLAYER');change.onclick=()=>{box.classList.remove('ar-leaderboard');openLogin(null)};
+    let exportBtn=el('button','ar-secondary','EXPORT ALL CSV');exportBtn.onclick=exportCSV;
+    actions.append(close,change,exportBtn);box.append(actions);show();
+  };
   tab.onclick=window.arcadeResults;
   // Only block the game when a new identity must be entered; returning students retain their saved name.
   window.arcadeTopicsNow=function(){return typeof window.grammarTopicKey==='function'?window.grammarTopicKey():((document.getElementById('topic')||{}).value||'MIXED GRAMMAR')};
